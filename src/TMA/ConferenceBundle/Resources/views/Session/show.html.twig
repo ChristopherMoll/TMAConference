@@ -1,0 +1,37 @@
+{% extends '::mobile.html.twig' %}
+
+{% block body -%}
+    <div class="container">
+        <h3>{{ entity.title }}</h3>
+        {% if entity.moderator %}
+            <p>Moderated by  <a href="{{ path('person_show', {'id': entity.moderator.id}) }}">{{ entity.moderator }}</a></p>
+        {% endif %}
+        {% if entity.time < date('now') %}
+            <p>Began at:
+        {% else %}
+            <p>Begins at:
+        {% endif %}
+        {{ entity.time|date('g:ia \\o\\n l F jS') }}</p>
+
+        <ul data-role="listview">
+            <li data-role="list-divider">Presentations</li>
+            {% for presentation in entity.presentations %}
+                <li>
+                    <a href="{{ path('presentation_show', {'id': presentation.id}) }}">
+                        {% if presentation.presenter.webpath %}
+                            <img src="{{ asset(presentation.presenter.webpath) }}">
+                        {% else %}
+                            <img src="{{ asset('bundles/tmaconference/images/generic.png') }}">
+                        {% endif %}
+                        <p>
+                            <strong>{{ presentation.presenter.name }}</strong>
+                            <small>{{ presentation.presenter.organization }}</small>
+                            <h2>{{ presentation.title }}</h2>
+                        </p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

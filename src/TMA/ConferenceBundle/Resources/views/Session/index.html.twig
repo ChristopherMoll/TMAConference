@@ -1,0 +1,23 @@
+{% extends '::mobile.html.twig' %}
+
+{% block body -%}
+    <div class="container">
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search sessions...">
+            <li data-role="list-divider">Sessions</li>
+            {% for entity in entities %}
+                <li>
+                    <a href="{{ path('session_show', {'id': entity.id}) }}">
+                        <h1>{{ entity.title }}</h1>
+                        <p>Moderated by {{ entity.moderator }}</p>
+                        {% if entity.time < date('now') %}
+                        <p>Began at:
+                            {% else %}
+                        <p>Beginning at:
+                            {% endif %}
+                            {{ entity.time|date('g:ia \\o\\n l F jS') }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

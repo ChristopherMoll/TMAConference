@@ -1,0 +1,26 @@
+<div data-role="panel" id="panel" data-position="left" data-display="overlay">
+    <ul data-role="listview">
+        <li data-role="list-divider">Main Menu</li>
+        <li>
+            <a href="{{ path('agenda')}}">Agenda</a>
+        </li>
+        <li>
+            <a href="{{ path('person')}}">People</a>
+        </li>
+        <li>
+            <a href="{{ path('presentation')}}">Presentations</a>
+        </li>
+        {% if is_granted('ROLE_USER') %}
+            <li>
+                <a href="{{ path('logout')}}">Logout</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{{ path('login')}}">Login</a>
+            </li>
+        {% endif %}
+    </ul>
+    <div style="margin-top:20px;">
+        <a href="#top" data-icon="delete" data-role="button" data-rel="close">Close</a>
+    </div>
+</div>

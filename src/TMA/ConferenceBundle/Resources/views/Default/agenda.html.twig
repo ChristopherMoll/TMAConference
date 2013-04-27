@@ -1,0 +1,23 @@
+{% extends '::mobile.html.twig' %}
+
+{% block body -%}
+    <div class="container">
+        {#<span style="text-align: center"><h2>Agenda</h2></span>#}
+        <div data-role="collapsible-set">
+        <ul id="agendalist" data-role="listview" data-autodividers="true" data-filter="true" data-filter-placeholder="Search sessions...">
+            {% for session in sessions %}
+                <li date="{{ session.time|date('l F jS') }}">
+                    <a href="{{ path('session_show', {'id': session.id}) }}">
+                        <h5>{{ session.time|date('g:ia') }}: {{ session.title }}</h5>
+                    </a>
+                    {#{% for presentation in session.presentations %}#}
+                            {#<a href="{{ path('presentation_show', {'id': presentation.id}) }}">#}
+                                {#<p><strong>{{ presentation.presenter }}</strong>: {{ presentation.title }}</p>#}
+                            {#</a>#}
+                    {#{% endfor %}#}
+                </li>
+            {% endfor %}
+        </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+<div data-role="header" data-position="fixed">
+    <a href="#panel" data-icon="grid">Menu</a>
+    <div id="tma-logo">
+        <img src="{{ asset('bundles/tmaconference/images/tma.png') }}">
+    </div>
+    {% if is_granted('ROLE_USER') %}
+        <a href="#top" data-icon="arrow-u" data-ajax="false" class="ui-btn-right top">Top</a>
+    {% else %}
+        <a href="{{ path('login') }}"  data-icon="gear" class="ui-btn-right top">Login</a>
+    {% endif %}
+</div>

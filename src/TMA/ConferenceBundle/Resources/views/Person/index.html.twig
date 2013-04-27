@@ -1,0 +1,22 @@
+{% extends '::mobile.html.twig' %}
+
+{% block body -%}
+    <div class="container">
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search people...">
+            <li data-role="list-divider">People</li>
+            {% for presenter in entities %}
+                <li>
+                    <a href="{{ path('person_show', {'id': presenter.id}) }}">
+                        {% if presenter.webpath %}
+                            <img src="{{ asset(presenter.webpath) }}">
+                        {% else %}
+                            <img src="{{ asset('bundles/tmaconference/images/generic.png') }}">
+                        {% endif %}
+                        <h1>{{ presenter.name }}</h1>
+                        <p><small>{{ presenter.organization }}</small></p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

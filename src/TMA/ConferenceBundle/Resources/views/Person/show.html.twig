@@ -1,0 +1,50 @@
+{% extends '::mobile.html.twig' %}
+
+{% block body -%}
+<div class="container">
+    {% if entity.webpath %}
+        <img src="{{ asset(entity.webpath) }}" width="150">
+    {% else %}
+        <img src="{{ asset('bundles/tmaconference/images/generic.png') }}" width="150">
+    {% endif %}
+    <h1>{{ entity.name }}</h1>
+    <p>{{ entity.bio }}</p>
+    {% if entity.presentations.count > 0 %}
+        <div data-role="collapsible" data-collapsed="false">
+            <h3>Presentations</h3>
+            <ul data-role="listview">
+                {% for presentation in entity.presentations %}
+                    <li>
+                        <a href="{{ path('presentation_show', {'id': presentation.id}) }}">
+                            <h1>{{ presentation.title }}</h1>
+                            <p><small>{{ presentation.time|date('g:ia \\o\\n l F jS') }}</small></p>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('person') }}">
+                List of People
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('person_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </li>
+        <li>
+            <form action="{{ path('person_delete', { 'id': entity.id }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

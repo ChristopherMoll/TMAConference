@@ -1,0 +1,26 @@
+{% extends '::mobile.html.twig' %}
+
+{% block body -%}
+    <div class="container">
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search sessions...">
+            <li data-role="list-divider">Presentations</li>
+            {% for entity in entities %}
+                <li>
+                    <a href="{{ path('presentation_show', {'id': entity.id}) }}">
+                        {% if entity.presenter.webpath %}
+                            <img src="{{ asset(entity.presenter.webpath) }}">
+                        {% else %}
+                            <img src="{{ asset('bundles/tmaconference/images/generic.png') }}">
+                        {% endif %}
+                        <p>
+                            <strong>{{ entity.presenter.name }}</strong>
+                            <small>{{ entity.presenter.organization }}</small>
+                            <p><em>{{ entity.time|date('g:ia \\o\\n l F jS') }}</em></p>
+                        <h2>{{ entity.title }}</h2>
+                        </p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

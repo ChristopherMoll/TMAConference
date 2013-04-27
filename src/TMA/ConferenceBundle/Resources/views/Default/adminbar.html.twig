@@ -1,0 +1,39 @@
+<div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    People
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ path('person_new') }}">Create Person</a></li>
+                    <li><a href="{{ path('person') }}">View All People</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Presentations
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a tabindex="-1" href="{{ path('presentation_new') }}">Create Presentation</a></li>
+                    <li><a tabindex="-1" href="{{ path('presentation') }}">View All Presentations</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Sessions
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a tabindex="-1" href="{{ path('session_new') }}">Create Session</a></li>
+                    <li><a tabindex="-1" href="{{ path('session') }}">View All Sessions</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="{{ path('logout') }}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</div>

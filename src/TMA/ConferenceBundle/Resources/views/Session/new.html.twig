@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Session creation</h1>
+
+    <form action="{{ path('session_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_row(form.title) }}
+        {{ form_row(form.time) }}
+        {{ form_row(form.moderator) }}
+        <a href="{{ path('person_new') }}">Create new Person</a>
+        {{ form_row(form.discussants) }}
+        {{ form_rest(form) }}
+        <p>
+            <button type="submit">Create</button>
+        </p>
+    </form>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('session') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

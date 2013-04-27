@@ -1,0 +1,44 @@
+{% extends '::mobile.html.twig' %}
+
+{% block body -%}
+<div class="container">
+    <h1>{{ entity.title }}</h1>
+    <small><em>by </em><a href="{{ path('person_show', {'id': entity.presenter.id}) }}">{{ entity.presenter }}</a></small>
+
+    {% if entity.time < date('now') %}
+        <p>Presented at:</p>
+    {% else %}
+        <p>To be presented at:</p>
+    {% endif %}
+        <p>{{ entity.time|date('g:ia \\o\\n l F jS') }}</p>
+        <p><em>as part of</em> <a href="{{ path('session_show', {'id': entity.session.id}) }}">{{ entity.session }}</a></p>
+    {% if entity.webpath %}
+        {#{% if is_granted('ROLE_USER') %}#}
+            <a href="{{ path('presentation_file', {'id': entity.id}) }}" data-ajax="false">Download the PDF</a>
+        {#{% else %}#}
+            {#<a href="{{ path('login') }}">Login to download presentation files</a>#}
+        {#{% endif %}#}
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('presentation') }}">
+                List of Presentations
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('presentation_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </li>
+        <li>
+            <form action="{{ path('presentation_delete', { 'id': entity.id }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

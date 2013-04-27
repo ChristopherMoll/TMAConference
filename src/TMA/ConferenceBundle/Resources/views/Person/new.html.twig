@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Create a new Person</h1>
+
+    <form action="{{ path('person_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_row(form.name) }}
+        {{ form_row(form.organization) }}
+        {{ form_row(form.bio) }}
+        {{ form_row(form.picture) }}
+        {{ form_rest(form) }}
+        <p>
+            <button type="submit">Create</button>
+        </p>
+    </form>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('person') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

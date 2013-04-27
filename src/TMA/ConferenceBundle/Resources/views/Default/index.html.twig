@@ -1,0 +1,29 @@
+{% extends '::mobile.html.twig' %}
+
+{% block body -%}
+<div class="container">
+    <div style="text-align: center"><h2>Welcome to TMA's 98th Annual Meeting &amp; Conference</h2></div>
+    <div class="ui-grid-a index-container">
+        <div class="ui-block-a index-row">
+            <a href="{{ path('agenda')}}">
+                <div class="index-box agenda"></div>
+            </a>
+        </div>
+        <div class="ui-block-b index-row">
+            <a href="{{ path('person')}}">
+                <div class="index-box people"></div>
+            </a>
+        </div>
+        <div class="ui-block-a index-row">
+            <a href="{{ path('presentation')}}">
+                <div class="index-box presentations"></div>
+            </a>
+        </div>
+        <div class="ui-block-b index-row">
+            <a href="{{ path('login')}}">
+                <div class="index-box login"></div>
+            </a>
+        </div>
+    </div><!-- /grid-a -->
+</div>
+{% endblock %}

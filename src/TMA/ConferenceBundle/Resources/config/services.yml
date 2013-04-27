@@ -1,0 +1,3 @@
+services:
+    unencrypted_encoder:
+        class: TMA\ConferenceBundle\Service\Unencrypted
