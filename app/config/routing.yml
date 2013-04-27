@@ -1,0 +1,11 @@
+tma_conference:
+    resource: "@TMAConferenceBundle/Controller/"
+    type:     annotation
+    prefix:   /
+login:
+    pattern:   /login
+    defaults:  { _controller: TMAConferenceBundle:Security:login }
+login_check:
+    pattern:   /login_check
+logout:
+    path:   /logout
